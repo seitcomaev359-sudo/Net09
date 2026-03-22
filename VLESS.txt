@@ -21,3 +21,4 @@ vless://e928d85d-f223-0bb8-a1d2-a56e9fbd50e0@89.208.230.167:443/?type=tcp&encryp
 vless://e928d85d-f223-0bb8-a1d2-a56e9fbd50e0@89.208.230.64:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=anti-vpn.ru&alpn=h2%2Chttp%2F1.1&fp=qq#57.%20VLESS%20%7C%20SNI%3A%2013
 vless://e928d85d-f223-0bb8-a1d2-a56e9fbd50e0@89.208.231.198:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=anti-vpn.ru&alpn=h2%2Chttp%2F1.1&fp=qq#58.%20VLESS%20%7C%20SNI%3A%2014
 vless://eb985aed-539d-03e8-98b5-335a5bb5b5ad@89.208.230.145:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=anti-vpn.ru&alpn=h2%2Chttp%2F1.1&fp=qq#59.%20VLESS%20%7C%20SNI%3A%2015
+vless://3f83b367-14d6-4290-a9f2-919128175d20@51.250.90.194:443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=chrome&sni=wl-2.legendary-vpn.com&pbk=EGd85OQZJHITQK4ZQ6NVJPhjCdnefuXr-pTz5T3kC2I&sid=ad72f41f972bb219#%F0%9F%8C%90%20Anycast-IP%20%5B%2A🇵🇸%5D%20🇵🇸
