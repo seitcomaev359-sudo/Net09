@@ -5,64 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NET09 VPN PRO</title>
 
+<!-- PWA MANIFEST INLINE -->
+<link rel="manifest" href="data:application/manifest+json,{
+  &quot;name&quot;:&quot;NET09 VPN PRO&quot;,
+  &quot;short_name&quot;:&quot;NET09 VPN&quot;,
+  &quot;start_url&quot;:&quot;.&quot;,
+  &quot;display&quot;:&quot;standalone&quot;,
+  &quot;background_color&quot;:&quot;#000000&quot;,
+  &quot;theme_color&quot;:&quot;#00f0ff&quot;,
+  &quot;icons&quot;:[{
+    &quot;src&quot;:&quot;icon.png&quot;,
+    &quot;sizes&quot;:&quot;512x512&quot;,
+    &quot;type&quot;:&quot;image/png&quot;
+  }]
+}">
+
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0a0a0f, #000);
-    color: white;
+    margin:0;
+    font-family: Arial;
+    background: radial-gradient(circle at top, #0b0f1a, #000);
+    color:white;
+    text-align:center;
 }
 
-.header {
-    text-align: center;
-    padding: 25px;
-}
+.header { padding:25px; }
 
 .title {
-    font-size: 28px;
-    color: #00f0ff;
-    text-shadow: 0 0 15px #00f0ff;
+    font-size:26px;
+    color:#00f0ff;
+    text-shadow:0 0 20px #00f0ff;
+}
+
+.connect {
+    width:190px;
+    height:190px;
+    margin:30px auto;
+    border-radius:50%;
+    background: linear-gradient(145deg, #00f0ff, #0066ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:bold;
+    color:black;
+    box-shadow:0 0 50px #00f0ff;
+    cursor:pointer;
+}
+
+.connect:active { transform:scale(0.95); }
+
+.status {
+    margin-top:10px;
+    font-size:14px;
+    opacity:0.8;
+}
+
+.server button {
+    margin:5px;
+    padding:10px 14px;
+    border-radius:10px;
+    border:none;
+    background:#111;
+    color:white;
+}
+
+.server button:hover {
+    background:#00f0ff;
+    color:black;
 }
 
 .card {
-    width: 90%;
-    max-width: 420px;
-    margin: 15px auto;
-    padding: 20px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 18px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 0 25px rgba(0,240,255,0.15);
+    width:90%;
+    max-width:420px;
+    margin:20px auto;
+    padding:15px;
+    background:rgba(255,255,255,0.05);
+    border-radius:15px;
+    backdrop-filter: blur(10px);
 }
 
-.status { color: lime; }
-
-.button {
+.btn {
     display:block;
     margin-top:10px;
     padding:12px;
     border-radius:12px;
-    text-align:center;
     background:#00f0ff;
     color:black;
     font-weight:bold;
     text-decoration:none;
-}
-
-.button:active {
-    transform: scale(0.98);
+    cursor:pointer;
 }
 
 .small {
-    font-size: 12px;
-    opacity: 0.7;
-    text-align:center;
-}
-
-.qr {
-    display:flex;
-    justify-content:center;
-    margin-top:15px;
+    font-size:12px;
+    opacity:0.7;
 }
 </style>
 </head>
@@ -73,68 +110,59 @@ body {
     <div class="title">⚡ NET09 VPN PRO</div>
 </div>
 
-<div class="card">
-    <p>👤 Логин: <b>TG:SEIT099</b></p>
-    <p>📌 Статус: <span class="status">АКТИВНА</span></p>
-    <p>⏳ Срок: <b>НАВСЕГДА</b></p>
-    <p>📊 Трафик: ∞</p>
+<div class="connect" onclick="connectVPN()">
+CONNECT
+</div>
+
+<div class="status" id="status">DISCONNECTED</div>
+
+<div class="server">
+    <button onclick="setServer('EU 🇩🇪')">EU</button>
+    <button onclick="setServer('US 🇺🇸')">US</button>
+    <button onclick="setServer('RU 🇷🇺')">RU</button>
 </div>
 
 <div class="card">
+    <p>👤 TG:SEIT099</p>
+    <p>📌 STATUS: ACTIVE</p>
+    <p>⏳ LIFETIME</p>
+    <p>📊 ∞ TRAFFIC</p>
 
-    <h3>VPN Клиенты</h3>
+    <a class="btn" onclick="openSub()">➕ Добавить подписку</a>
+    <a class="btn" onclick="copySub()">📋 Копировать подписку</a>
 
-    <a class="button" href="https://apps.apple.com/ru/app/shadowrocket/id932747118" target="_blank">
-        🟣 Shadowrocket (App Store)
-    </a>
-
-    <a class="button" href="https://apps.apple.com/ru/app/happ-vpn/id6450342505" target="_blank">
-        🔵 HAPP V2 (App Store)
-    </a>
-
-    <a class="button" href="https://apps.apple.com/ru/app/v2raytun/id6476628951" target="_blank">
-        🟢 v2RayTun (App Store)
-    </a>
-
-    <a class="button" href="#" onclick="copySub()">
-        📋 Скопировать подписку
-    </a>
-
-    <a class="button" href="#" onclick="openVPN()">
-        🚀 Добавить подписку
-    </a>
-
-    <div class="qr" id="qr"></div>
-
-    <p class="small">Поддержка авто-импорта зависит от клиента</p>
+    <p class="small">Откроется VPN клиент → импорт вручную</p>
 </div>
 
 <script>
 
-const SUB_URL = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
+const SUB = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
 
-// 📋 копирование
-function copySub() {
-    navigator.clipboard.writeText(SUB_URL);
-    alert("Подписка скопирована");
+let server = "EU 🇩🇪";
+
+function setServer(s){
+    server = s;
+    alert("Выбран сервер: " + s);
 }
 
-// 🚀 открыть подписку (универсально)
-function openVPN() {
+function connectVPN(){
+    document.getElementById("status").innerText = "CONNECTING...";
 
-    // универсальная попытка (iOS сам выберет приложение)
-    window.location.href = SUB_URL;
+    setTimeout(()=>{
+        document.getElementById("status").innerText = "CONNECTED • " + server;
+    },1500);
 
-    // fallback
-    setTimeout(() => {
-        window.location.href = SUB_URL;
-    }, 1000);
+    window.location.href = SUB;
 }
 
-// 📱 QR код
-const img = document.createElement("img");
-img.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(SUB_URL);
-document.getElementById("qr").appendChild(img);
+function openSub(){
+    window.location.href = SUB;
+}
+
+function copySub(){
+    navigator.clipboard.writeText(SUB);
+    alert("Скопировано");
+}
 
 </script>
 
