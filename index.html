@@ -3,180 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NET09 Secure VPN</title>
+<title>VPN Subscription</title>
 
 <style>
-body {
+body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0a0f1a, #000);
-    color:white;
+    font-family: -apple-system, BlinkMacSystemFont, Arial;
+    background: radial-gradient(circle at top, #0b0f1a, #000);
+    color:#fff;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:90%;
+    max-width:420px;
+    padding:25px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(0,240,255,0.15);
     text-align:center;
 }
 
-/* HEADER */
-.header {
-    padding:25px;
-}
-
-.title {
-    font-size:26px;
-    color:#00f0ff;
-    text-shadow:0 0 20px #00f0ff;
-}
-
-/* CONNECT BUTTON */
-.connect {
-    width:200px;
-    height:200px;
-    margin:25px auto;
-    border-radius:50%;
-    background: linear-gradient(145deg, #00f0ff, #0066ff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.title{
     font-size:20px;
-    font-weight:bold;
-    color:black;
-    box-shadow:0 0 60px #00f0ff;
-    cursor:pointer;
-    transition:0.2s;
+    color:#00f0ff;
+    text-shadow:0 0 10px #00f0ff;
+    margin-bottom:10px;
 }
 
-.connect:active {
-    transform:scale(0.95);
-}
-
-/* STATUS */
-.status {
-    margin-top:10px;
-    font-size:14px;
+.info{
+    font-size:13px;
     opacity:0.8;
+    margin-bottom:15px;
 }
 
-/* SERVER BOX */
-.server-box {
-    margin-top:20px;
-}
-
-.server {
-    display:inline-block;
-    margin:5px;
-    padding:10px 14px;
-    border-radius:10px;
-    background:#111;
-    cursor:pointer;
-}
-
-.server:hover {
-    background:#00f0ff;
-    color:black;
-}
-
-/* CARD */
-.card {
-    width:90%;
-    max-width:420px;
-    margin:20px auto;
-    padding:15px;
-    background:rgba(255,255,255,0.05);
-    border-radius:15px;
-    backdrop-filter: blur(10px);
-}
-
-.btn {
-    display:block;
-    margin-top:10px;
+.link{
+    font-size:12px;
+    word-break:break-all;
     padding:12px;
     border-radius:12px;
-    background:#00f0ff;
-    color:black;
+    background: rgba(0,0,0,0.4);
+    border:1px solid rgba(0,240,255,0.2);
+    margin-bottom:20px;
+    color:#bffcff;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 18px;
+    border-radius:12px;
+    background: linear-gradient(135deg,#00f0ff,#0066ff);
+    color:#000;
     font-weight:bold;
     cursor:pointer;
-    text-decoration:none;
+    box-shadow:0 0 20px rgba(0,240,255,0.4);
 }
 
-.small {
-    font-size:12px;
-    opacity:0.7;
+.btn:active{
+    transform:scale(0.97);
 }
 
-/* animation */
-.glow {
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow:0 0 20px #00f0ff; }
-    50% { box-shadow:0 0 60px #00f0ff; }
-    100% { box-shadow:0 0 20px #00f0ff; }
+.small{
+    margin-top:15px;
+    font-size:11px;
+    opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div class="title">🔐 NET09 SECURE VPN</div>
-</div>
-
-<!-- CONNECT -->
-<div class="connect glow" onclick="connectVPN()" id="btn">
-CONNECT
-</div>
-
-<div class="status" id="status">DISCONNECTED</div>
-
-<!-- SERVERS -->
-<div class="server-box">
-    <div class="server" onclick="setServer('EU 🇩🇪')">EU</div>
-    <div class="server" onclick="setServer('US 🇺🇸')">US</div>
-    <div class="server" onclick="setServer('RU 🇷🇺')">RU</div>
-</div>
-
-<!-- INFO -->
 <div class="card">
-    <p>👤 User: TG:SEIT099</p>
-    <p>📊 Traffic: Unlimited</p>
-    <p>⏳ Plan: Lifetime</p>
 
-    <a class="btn" onclick="openSub()">➕ Add Subscription</a>
-    <a class="btn" onclick="copySub()">📋 Copy Subscription</a>
+    <div class="title">🔐 VPN Subscription</div>
+
+    <!-- 👇 ТВОЁ ИМЯ + ДАТА -->
+    <div class="info">
+        👤 TG: SEIT099<br>
+        📅 05.06.2026
+    </div>
+
+    <div class="link" id="sub">
+        https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09
+    </div>
+
+    <div class="btn" onclick="copyLink()">
+        📋 Copy Link
+    </div>
+
+    <div class="small">
+        Open VPN app and paste subscription
+    </div>
+
 </div>
 
 <script>
 
-const SUB = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
-
-let server = "EU 🇩🇪";
-
-function setServer(s){
-    server = s;
-    alert("Server selected: " + s);
-}
-
-function connectVPN(){
-    let status = document.getElementById("status");
-    let btn = document.getElementById("btn");
-
-    status.innerText = "CONNECTING SECURE TUNNEL...";
-    btn.classList.add("glow");
-
-    setTimeout(()=>{
-        status.innerText = "CONNECTED • " + server;
-    },1500);
-
-    // open subscription (best possible iOS behavior)
-    window.location.href = SUB;
-}
-
-function openSub(){
-    window.location.href = SUB;
-}
-
-function copySub(){
-    navigator.clipboard.writeText(SUB);
-    alert("Subscription copied");
+function copyLink(){
+    const text = document.getElementById("sub").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Link copied");
 }
 
 </script>
