@@ -3,33 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NET09 VPN PRO</title>
-
-<!-- PWA MANIFEST INLINE -->
-<link rel="manifest" href="data:application/manifest+json,{
-  &quot;name&quot;:&quot;NET09 VPN PRO&quot;,
-  &quot;short_name&quot;:&quot;NET09 VPN&quot;,
-  &quot;start_url&quot;:&quot;.&quot;,
-  &quot;display&quot;:&quot;standalone&quot;,
-  &quot;background_color&quot;:&quot;#000000&quot;,
-  &quot;theme_color&quot;:&quot;#00f0ff&quot;,
-  &quot;icons&quot;:[{
-    &quot;src&quot;:&quot;icon.png&quot;,
-    &quot;sizes&quot;:&quot;512x512&quot;,
-    &quot;type&quot;:&quot;image/png&quot;
-  }]
-}">
+<title>NET09 Secure VPN</title>
 
 <style>
 body {
     margin:0;
-    font-family: Arial;
-    background: radial-gradient(circle at top, #0b0f1a, #000);
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #0a0f1a, #000);
     color:white;
     text-align:center;
 }
 
-.header { padding:25px; }
+/* HEADER */
+.header {
+    padding:25px;
+}
 
 .title {
     font-size:26px;
@@ -37,10 +25,11 @@ body {
     text-shadow:0 0 20px #00f0ff;
 }
 
+/* CONNECT BUTTON */
 .connect {
-    width:190px;
-    height:190px;
-    margin:30px auto;
+    width:200px;
+    height:200px;
+    margin:25px auto;
     border-radius:50%;
     background: linear-gradient(145deg, #00f0ff, #0066ff);
     display:flex;
@@ -49,32 +38,42 @@ body {
     font-size:20px;
     font-weight:bold;
     color:black;
-    box-shadow:0 0 50px #00f0ff;
+    box-shadow:0 0 60px #00f0ff;
     cursor:pointer;
+    transition:0.2s;
 }
 
-.connect:active { transform:scale(0.95); }
+.connect:active {
+    transform:scale(0.95);
+}
 
+/* STATUS */
 .status {
     margin-top:10px;
     font-size:14px;
     opacity:0.8;
 }
 
-.server button {
+/* SERVER BOX */
+.server-box {
+    margin-top:20px;
+}
+
+.server {
+    display:inline-block;
     margin:5px;
     padding:10px 14px;
     border-radius:10px;
-    border:none;
     background:#111;
-    color:white;
+    cursor:pointer;
 }
 
-.server button:hover {
+.server:hover {
     background:#00f0ff;
     color:black;
 }
 
+/* CARD */
 .card {
     width:90%;
     max-width:420px;
@@ -93,13 +92,24 @@ body {
     background:#00f0ff;
     color:black;
     font-weight:bold;
-    text-decoration:none;
     cursor:pointer;
+    text-decoration:none;
 }
 
 .small {
     font-size:12px;
     opacity:0.7;
+}
+
+/* animation */
+.glow {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow:0 0 20px #00f0ff; }
+    50% { box-shadow:0 0 60px #00f0ff; }
+    100% { box-shadow:0 0 20px #00f0ff; }
 }
 </style>
 </head>
@@ -107,31 +117,31 @@ body {
 <body>
 
 <div class="header">
-    <div class="title">⚡ NET09 VPN PRO</div>
+    <div class="title">🔐 NET09 SECURE VPN</div>
 </div>
 
-<div class="connect" onclick="connectVPN()">
+<!-- CONNECT -->
+<div class="connect glow" onclick="connectVPN()" id="btn">
 CONNECT
 </div>
 
 <div class="status" id="status">DISCONNECTED</div>
 
-<div class="server">
-    <button onclick="setServer('EU 🇩🇪')">EU</button>
-    <button onclick="setServer('US 🇺🇸')">US</button>
-    <button onclick="setServer('RU 🇷🇺')">RU</button>
+<!-- SERVERS -->
+<div class="server-box">
+    <div class="server" onclick="setServer('EU 🇩🇪')">EU</div>
+    <div class="server" onclick="setServer('US 🇺🇸')">US</div>
+    <div class="server" onclick="setServer('RU 🇷🇺')">RU</div>
 </div>
 
+<!-- INFO -->
 <div class="card">
-    <p>👤 TG:SEIT099</p>
-    <p>📌 STATUS: ACTIVE</p>
-    <p>⏳ LIFETIME</p>
-    <p>📊 ∞ TRAFFIC</p>
+    <p>👤 User: TG:SEIT099</p>
+    <p>📊 Traffic: Unlimited</p>
+    <p>⏳ Plan: Lifetime</p>
 
-    <a class="btn" onclick="openSub()">➕ Добавить подписку</a>
-    <a class="btn" onclick="copySub()">📋 Копировать подписку</a>
-
-    <p class="small">Откроется VPN клиент → импорт вручную</p>
+    <a class="btn" onclick="openSub()">➕ Add Subscription</a>
+    <a class="btn" onclick="copySub()">📋 Copy Subscription</a>
 </div>
 
 <script>
@@ -142,16 +152,21 @@ let server = "EU 🇩🇪";
 
 function setServer(s){
     server = s;
-    alert("Выбран сервер: " + s);
+    alert("Server selected: " + s);
 }
 
 function connectVPN(){
-    document.getElementById("status").innerText = "CONNECTING...";
+    let status = document.getElementById("status");
+    let btn = document.getElementById("btn");
+
+    status.innerText = "CONNECTING SECURE TUNNEL...";
+    btn.classList.add("glow");
 
     setTimeout(()=>{
-        document.getElementById("status").innerText = "CONNECTED • " + server;
+        status.innerText = "CONNECTED • " + server;
     },1500);
 
+    // open subscription (best possible iOS behavior)
     window.location.href = SUB;
 }
 
@@ -161,7 +176,7 @@ function openSub(){
 
 function copySub(){
     navigator.clipboard.writeText(SUB);
-    alert("Скопировано");
+    alert("Subscription copied");
 }
 
 </script>
