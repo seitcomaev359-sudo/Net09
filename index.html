@@ -1,165 +1,397 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>VPN PRO+</title>
 
-<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0f1f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="VPN PRO+">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin:0;
-  font-family: Arial;
-  background:#05070f;
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
-.panel {
-  width:360px;
-  padding:20px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-  box-shadow:0 0 40px rgba(0,255,255,0.2);
-  backdrop-filter:blur(10px);
+body{
+background:#050816;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
 }
 
-h2 { text-align:center; color:#00f5ff; }
-
-.card {
-  background:rgba(255,255,255,0.05);
-  padding:15px;
-  border-radius:15px;
-  margin:10px 0;
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-2;
 }
 
-.server {
-  display:flex;
-  justify-content:space-between;
-  padding:8px;
-  border-radius:10px;
-  cursor:pointer;
+body::after{
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#00d4ff33,transparent 70%);
+top:-200px;
+left:-100px;
+z-index:-1;
 }
 
-.server:hover {
-  background:rgba(0,255,255,0.1);
+.container{
+max-width:430px;
+margin:auto;
+padding:20px;
+padding-top:40px;
 }
 
-.connect {
-  width:100%;
-  padding:15px;
-  border:none;
-  border-radius:50px;
-  font-size:18px;
-  background:linear-gradient(90deg,#00f5ff,#7a5cff);
-  color:#000;
-  cursor:pointer;
-  margin-top:10px;
-  transition:0.3s;
+.logo{
+font-size:38px;
+font-weight:800;
+text-align:center;
+margin-bottom:25px;
+background:linear-gradient(90deg,#00e5ff,#5b7fff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.connect.active {
-  box-shadow:0 0 30px #00f5ff;
-  transform:scale(1.05);
+.profile{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:30px;
+padding:22px;
+margin-bottom:20px;
 }
 
-.small {
-  font-size:12px;
-  opacity:0.7;
+.userhead{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
 }
 
-.btn {
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  margin-top:8px;
-  width:100%;
-  cursor:pointer;
-  background:#111;
-  color:#fff;
+.avatar{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#00ff88;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+box-shadow:0 0 25px #00ff88;
 }
 
-.btn:hover {
-  background:#222;
+.name{
+font-size:28px;
+font-weight:700;
+}
+
+.subtext{
+opacity:.7;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.card{
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.card span{
+display:block;
+opacity:.7;
+font-size:13px;
+margin-bottom:8px;
+}
+
+.card h3{
+font-size:20px;
+}
+
+.user{
+box-shadow:0 0 20px #00d4ff22;
+}
+
+.status{
+box-shadow:0 0 20px #00ff8822;
+}
+
+.expire{
+box-shadow:0 0 20px #ff4d6d22;
+}
+
+.traffic{
+box-shadow:0 0 20px #ffd00022;
+}
+
+.section{
+margin-top:25px;
+background:rgba(255,255,255,.05);
+border-radius:30px;
+padding:20px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.title{
+font-size:28px;
+font-weight:700;
+margin-bottom:18px;
+}
+
+.server{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px;
+margin-bottom:10px;
+background:rgba(255,255,255,.04);
+border-radius:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.server:hover{
+transform:scale(1.02);
+}
+
+.active{
+border:1px solid #00d4ff;
+box-shadow:0 0 20px #00d4ff44;
+}
+
+.selected{
+margin-top:10px;
+opacity:.8;
+}
+
+.connect-wrap{
+display:flex;
+justify-content:center;
+margin:35px 0;
+}
+
+.connect{
+width:220px;
+height:220px;
+border-radius:50%;
+border:none;
+font-size:34px;
+font-weight:700;
+color:white;
+cursor:pointer;
+background:linear-gradient(135deg,#00d4ff,#6b5cff);
+box-shadow:0 0 50px #00d4ff88;
+transition:.3s;
+}
+
+.connect:hover{
+transform:scale(1.05);
+}
+
+.connected{
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 20px #00ff88;}
+50%{box-shadow:0 0 60px #00ff88;}
+100%{box-shadow:0 0 20px #00ff88;}
+}
+
+.statusbar{
+text-align:center;
+font-size:22px;
+font-weight:700;
+margin-top:15px;
+}
+
+.btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+margin-top:12px;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+color:white;
+background:#0f1426;
+}
+
+.copy{
+background:linear-gradient(135deg,#111827,#1e293b);
+}
+
+.add{
+background:linear-gradient(135deg,#00d4ff,#6b5cff);
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+opacity:.5;
+font-size:13px;
 }
 </style>
 </head>
-
 <body>
 
-<div class="panel">
+<div class="container">
 
-<h2>VPN PRO+</h2>
+<div class="logo">VPN PRO+</div>
 
-<div class="card">
-<b>USER:</b> TG:SEIT099<br>
-<b>STATUS:</b> 🟢 Active<br>
-<b>SUB:</b> 07.09.2026<br>
-<b>TRAFFIC:</b> ∞ GB
+<div class="profile">
+
+<div class="userhead">
+<div class="avatar">✓</div>
+<div>
+<div class="name">TG:SEIT099</div>
+<div class="subtext">Истекает 07.09.2026</div>
+</div>
 </div>
 
-<div class="card">
-<div class="server" onclick="selectServer('Germany')">🇩🇪 Germany <span>24ms</span></div>
-<div class="server" onclick="selectServer('USA')">🇺🇸 USA <span>60ms</span></div>
-<div class="server" onclick="selectServer('Japan')">🇯🇵 Japan <span>110ms</span></div>
+<div class="grid">
+
+<div class="card user">
+<span>Пользователь</span>
+<h3>TG:SEIT099</h3>
 </div>
 
-<div class="card">
-<div class="small">Selected:</div>
-<div id="selected">Germany</div>
+<div class="card status">
+<span>Статус</span>
+<h3>Активна</h3>
 </div>
 
-<button class="connect" id="btn" onclick="connectVPN()">CONNECT</button>
+<div class="card expire">
+<span>Подписка</span>
+<h3>07.09.2026</h3>
+</div>
 
-<div class="card">
-<button class="btn" onclick="copySub()">📋 Copy Subscription</button>
-<button class="btn" onclick="openSub()">➕ Add Subscription</button>
+<div class="card traffic">
+<span>Трафик</span>
+<h3>∞ GB</h3>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+
+<div class="title">Серверы</div>
+
+<div class="server active" onclick="selectServer(this,'Germany')">
+<span>🇩🇪 Germany</span>
+<span>24ms</span>
+</div>
+
+<div class="server" onclick="selectServer(this,'USA')">
+<span>🇺🇸 USA</span>
+<span>60ms</span>
+</div>
+
+<div class="server" onclick="selectServer(this,'Japan')">
+<span>🇯🇵 Japan</span>
+<span>110ms</span>
+</div>
+
+<div class="selected">
+Выбран: <span id="serverName">Germany</span>
 </div>
 
 </div>
 
-<audio id="sound">
-<source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
-</audio>
+<div class="connect-wrap">
+<button class="connect" id="connectBtn" onclick="toggleVPN()">
+CONNECT
+</button>
+</div>
+
+<div class="statusbar" id="status">
+🔴 Отключено
+</div>
+
+<div class="section">
+
+<button class="btn copy" onclick="copySub()">
+📋 Копировать подписку
+</button>
+
+<button class="btn add" onclick="openSub()">
+➕ Добавить подписку
+</button>
+
+</div>
+
+<div class="footer">
+VPN PRO+ Premium Edition
+</div>
+
+</div>
 
 <script>
-let connected = false;
+const subscription =
+"https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
 
-const subURL = atob("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NlaXRjb21hZXYzNTktc3Vkb2wvTmV0MDkvQm96YTkvR2V0LnR4dC9UZXN0MDk=");
-
-function selectServer(name){
-  document.getElementById("selected").innerText = name;
-}
-
-function connectVPN(){
-  let btn = document.getElementById("btn");
-  let sound = document.getElementById("sound");
-
-  connected = !connected;
-
-  if(connected){
-    btn.innerText = "CONNECTED";
-    btn.classList.add("active");
-    sound.play();
-  } else {
-    btn.innerText = "CONNECT";
-    btn.classList.remove("active");
-  }
-}
+let connected=false;
 
 function copySub(){
-  navigator.clipboard.writeText(subURL);
-  alert("Copied!");
+navigator.clipboard.writeText(subscription);
+alert("Подписка скопирована");
 }
 
 function openSub(){
-  window.open(subURL, "_blank");
+window.open(subscription,'_blank');
+}
+
+function selectServer(el,name){
+document.querySelectorAll('.server').forEach(s=>{
+s.classList.remove('active');
+});
+el.classList.add('active');
+document.getElementById('serverName').innerText=name;
+}
+
+function toggleVPN(){
+
+const btn=document.getElementById('connectBtn');
+const status=document.getElementById('status');
+
+connected=!connected;
+
+if(connected){
+btn.innerText='CONNECTED';
+btn.classList.add('connected');
+status.innerHTML='🟢 Подключено';
+}else{
+btn.innerText='CONNECT';
+btn.classList.remove('connected');
+status.innerHTML='🔴 Отключено';
+}
 }
 </script>
 
 </body>
 </html>
+`
