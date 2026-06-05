@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultra VPN</title>
+<title>PRO VPN</title>
 
 <style>
 body{
@@ -11,119 +11,170 @@ body{
     font-family:-apple-system, BlinkMacSystemFont, Arial;
     background: radial-gradient(circle at top, #0a0f1a, #000);
     color:#fff;
+    overflow:hidden;
+}
+
+/* LOGIN */
+.login{
+    position:absolute;
+    width:100%;
+    height:100%;
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
+}
+
+.input{
+    padding:12px;
+    margin:6px;
+    border-radius:10px;
+    border:none;
+    width:200px;
+}
+
+.loginBtn{
+    padding:12px 20px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:#00f0ff;
+    color:#000;
+    font-weight:bold;
+}
+
+/* APP */
+.app{
+    display:none;
     height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
 .card{
-    width:92%;
+    width:90%;
     max-width:420px;
-    padding:28px;
-    border-radius:24px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 50px rgba(0,240,255,0.15);
-}
-
-/* TITLE */
-.title{
+    padding:25px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
     text-align:center;
-    font-size:20px;
-    color:#00f0ff;
-    text-shadow:0 0 15px #00f0ff;
-    margin-bottom:20px;
 }
 
-/* ROWS */
-.row{
+/* CONNECT BUTTON */
+.connect{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    background: linear-gradient(145deg,#00f0ff,#0066ff);
     display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,0.07);
-    font-size:14px;
-}
-
-.label{ opacity:0.6; }
-.value{ font-weight:600; }
-
-.infinity{
-    color:#00f0ff;
-    font-weight:700;
-}
-
-/* BADGE */
-.badge{
-    text-align:center;
-    margin-top:10px;
-    font-size:12px;
-    opacity:0.7;
-}
-
-/* BUTTON */
-.btn{
-    margin-top:18px;
-    display:block;
-    text-align:center;
-    padding:12px;
-    border-radius:14px;
-    background: linear-gradient(135deg,#00f0ff,#0066ff);
-    color:#000;
+    justify-content:center;
+    align-items:center;
     font-weight:bold;
+    color:black;
+    margin:20px auto;
     cursor:pointer;
-    user-select:none;
+    transition:0.3s;
 }
 
-.btn:active{
-    transform:scale(0.98);
+.connect.active{
+    box-shadow:0 0 60px #00f0ff;
+    transform:scale(1.05);
+}
+
+/* SERVER */
+.server{
+    margin-top:10px;
+}
+
+.server button{
+    margin:5px;
+    padding:8px 12px;
+    border-radius:10px;
+    border:none;
+    background:#111;
+    color:white;
+}
+
+.server button:hover{
+    background:#00f0ff;
+    color:black;
+}
+
+/* STATUS */
+.status{
+    font-size:13px;
+    opacity:0.8;
+    margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- LOGIN -->
+<div class="login" id="login">
+    <input class="input" id="user" placeholder="Username">
+    <input class="input" type="password" id="pass" placeholder="Password">
+    <button class="loginBtn" onclick="login()">LOGIN</button>
+</div>
 
-    <div class="title">🔐 ULTRA PREMIUM VPN</div>
+<!-- APP -->
+<div class="app" id="app">
 
-    <div class="row">
-        <div class="label">Имя пользователя</div>
-        <div class="value">TG:SEIT099</div>
-    </div>
+    <div class="card">
 
-    <div class="row">
-        <div class="label">Статус</div>
-        <div class="value">Активна</div>
-    </div>
+        <h3>PRO VPN</h3>
 
-    <div class="row">
-        <div class="label">Трафик</div>
-        <div class="value infinity">∞ GB</div>
-    </div>
+        <div class="connect" id="connect" onclick="connectVPN()">
+            CONNECT
+        </div>
 
-    <div class="row">
-        <div class="label">Дата доступа</div>
-        <div class="value">07.09.2026</div>
-    </div>
+        <div class="server">
+            <button onclick="setServer('EU 🇩🇪')">EU</button>
+            <button onclick="setServer('US 🇺🇸')">US</button>
+            <button onclick="setServer('RU 🇷🇺')">RU</button>
+        </div>
 
-    <div class="badge">
-        Premium encrypted VPN access • Secure tunnel
-    </div>
+        <div class="status" id="status">Status: DISCONNECTED</div>
 
-    <div class="btn" onclick="copySub()">
-        📋 Копировать подписку
     </div>
 
 </div>
 
 <script>
 
-const SUB = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
+let server = "EU 🇩🇪";
 
-function copySub(){
-    navigator.clipboard.writeText(SUB);
-    alert("Подписка скопирована");
+// LOGIN
+function login(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("app").style.display="flex";
+}
+
+// SERVER
+function setServer(s){
+    server = s;
+    alert("Server: " + s);
+}
+
+// CONNECT ANIMATION + SOUND
+function connectVPN(){
+
+    let btn = document.getElementById("connect");
+    let status = document.getElementById("status");
+
+    btn.classList.add("active");
+    status.innerText = "CONNECTING...";
+
+    // sound (simple beep)
+    let audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+    audio.play();
+
+    setTimeout(()=>{
+        status.innerText = "SECURE • " + server;
+    },2000);
 }
 
 </script>
