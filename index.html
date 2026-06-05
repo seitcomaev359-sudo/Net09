@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NET09 VPN PRO</title>
 
-<!-- PWA -->
-<link rel="manifest" href="manifest.json">
-
 <style>
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: radial-gradient(circle at top, #0a0a0f, #000);
     color: white;
 }
@@ -22,7 +19,7 @@ body {
 }
 
 .title {
-    font-size: 26px;
+    font-size: 28px;
     color: #00f0ff;
     text-shadow: 0 0 15px #00f0ff;
 }
@@ -38,6 +35,8 @@ body {
     box-shadow: 0 0 25px rgba(0,240,255,0.15);
 }
 
+.status { color: lime; }
+
 .button {
     display:block;
     margin-top:10px;
@@ -50,8 +49,14 @@ body {
     text-decoration:none;
 }
 
-.button:hover {
-    background:#00bcd4;
+.button:active {
+    transform: scale(0.98);
+}
+
+.small {
+    font-size: 12px;
+    opacity: 0.7;
+    text-align:center;
 }
 
 .qr {
@@ -69,16 +74,26 @@ body {
 </div>
 
 <div class="card">
-    <p>👤 TG:SEIT099</p>
-    <p>📌 Статус: АКТИВНА</p>
-    <p>⏳ Срок: НАВСЕГДА</p>
+    <p>👤 Логин: <b>TG:SEIT099</b></p>
+    <p>📌 Статус: <span class="status">АКТИВНА</span></p>
+    <p>⏳ Срок: <b>НАВСЕГДА</b></p>
     <p>📊 Трафик: ∞</p>
 </div>
 
 <div class="card">
 
-    <a class="button" href="https://apps.apple.com/ru/app/incy/id6756943388">
-        📲 Установить INCY
+    <h3>VPN Клиенты</h3>
+
+    <a class="button" href="https://apps.apple.com/ru/app/shadowrocket/id932747118" target="_blank">
+        🟣 Shadowrocket (App Store)
+    </a>
+
+    <a class="button" href="https://apps.apple.com/ru/app/happ-vpn/id6450342505" target="_blank">
+        🔵 HAPP V2 (App Store)
+    </a>
+
+    <a class="button" href="https://apps.apple.com/ru/app/v2raytun/id6476628951" target="_blank">
+        🟢 v2RayTun (App Store)
     </a>
 
     <a class="button" href="#" onclick="copySub()">
@@ -86,35 +101,41 @@ body {
     </a>
 
     <a class="button" href="#" onclick="openVPN()">
-        🚀 Открыть в VPN
+        🚀 Добавить подписку
     </a>
 
     <div class="qr" id="qr"></div>
 
+    <p class="small">Поддержка авто-импорта зависит от клиента</p>
 </div>
 
 <script>
-const SUB = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
 
-// копирование
-function copySub(){
-    navigator.clipboard.writeText(SUB);
+const SUB_URL = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
+
+// 📋 копирование
+function copySub() {
+    navigator.clipboard.writeText(SUB_URL);
     alert("Подписка скопирована");
 }
 
-// попытка открыть VPN приложение
-function openVPN(){
-    window.location.href = "incy://import?url=" + encodeURIComponent(SUB);
+// 🚀 открыть подписку (универсально)
+function openVPN() {
 
-    setTimeout(()=>{
-        window.location.href = SUB;
-    }, 1200);
+    // универсальная попытка (iOS сам выберет приложение)
+    window.location.href = SUB_URL;
+
+    // fallback
+    setTimeout(() => {
+        window.location.href = SUB_URL;
+    }, 1000);
 }
 
-// QR код
-const qrImg = document.createElement("img");
-qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(SUB);
-document.getElementById("qr").appendChild(qrImg);
+// 📱 QR код
+const img = document.createElement("img");
+img.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(SUB_URL);
+document.getElementById("qr").appendChild(img);
+
 </script>
 
 </body>
