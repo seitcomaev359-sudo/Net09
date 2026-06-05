@@ -3,180 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRO VPN</title>
+<title>VPN PRO+</title>
+
+<link rel="manifest" href="manifest.json">
 
 <style>
-body{
-    margin:0;
-    font-family:-apple-system, BlinkMacSystemFont, Arial;
-    background: radial-gradient(circle at top, #0a0f1a, #000);
-    color:#fff;
-    overflow:hidden;
+body {
+  margin:0;
+  font-family: Arial;
+  background:#05070f;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-/* LOGIN */
-.login{
-    position:absolute;
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+.panel {
+  width:360px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 40px rgba(0,255,255,0.2);
+  backdrop-filter:blur(10px);
 }
 
-.input{
-    padding:12px;
-    margin:6px;
-    border-radius:10px;
-    border:none;
-    width:200px;
+h2 { text-align:center; color:#00f5ff; }
+
+.card {
+  background:rgba(255,255,255,0.05);
+  padding:15px;
+  border-radius:15px;
+  margin:10px 0;
 }
 
-.loginBtn{
-    padding:12px 20px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    background:#00f0ff;
-    color:#000;
-    font-weight:bold;
+.server {
+  display:flex;
+  justify-content:space-between;
+  padding:8px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-/* APP */
-.app{
-    display:none;
-    height:100vh;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+.server:hover {
+  background:rgba(0,255,255,0.1);
 }
 
-.card{
-    width:90%;
-    max-width:420px;
-    padding:25px;
-    border-radius:20px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(15px);
-    text-align:center;
+.connect {
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:50px;
+  font-size:18px;
+  background:linear-gradient(90deg,#00f5ff,#7a5cff);
+  color:#000;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.3s;
 }
 
-/* CONNECT BUTTON */
-.connect{
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    background: linear-gradient(145deg,#00f0ff,#0066ff);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-    color:black;
-    margin:20px auto;
-    cursor:pointer;
-    transition:0.3s;
+.connect.active {
+  box-shadow:0 0 30px #00f5ff;
+  transform:scale(1.05);
 }
 
-.connect.active{
-    box-shadow:0 0 60px #00f0ff;
-    transform:scale(1.05);
+.small {
+  font-size:12px;
+  opacity:0.7;
 }
 
-/* SERVER */
-.server{
-    margin-top:10px;
+.btn {
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  margin-top:8px;
+  width:100%;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
 }
 
-.server button{
-    margin:5px;
-    padding:8px 12px;
-    border-radius:10px;
-    border:none;
-    background:#111;
-    color:white;
-}
-
-.server button:hover{
-    background:#00f0ff;
-    color:black;
-}
-
-/* STATUS */
-.status{
-    font-size:13px;
-    opacity:0.8;
-    margin-top:10px;
+.btn:hover {
+  background:#222;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div class="login" id="login">
-    <input class="input" id="user" placeholder="Username">
-    <input class="input" type="password" id="pass" placeholder="Password">
-    <button class="loginBtn" onclick="login()">LOGIN</button>
+<div class="panel">
+
+<h2>VPN PRO+</h2>
+
+<div class="card">
+<b>USER:</b> TG:SEIT099<br>
+<b>STATUS:</b> 🟢 Active<br>
+<b>SUB:</b> 07.09.2026<br>
+<b>TRAFFIC:</b> ∞ GB
 </div>
 
-<!-- APP -->
-<div class="app" id="app">
+<div class="card">
+<div class="server" onclick="selectServer('Germany')">🇩🇪 Germany <span>24ms</span></div>
+<div class="server" onclick="selectServer('USA')">🇺🇸 USA <span>60ms</span></div>
+<div class="server" onclick="selectServer('Japan')">🇯🇵 Japan <span>110ms</span></div>
+</div>
 
-    <div class="card">
+<div class="card">
+<div class="small">Selected:</div>
+<div id="selected">Germany</div>
+</div>
 
-        <h3>PRO VPN</h3>
+<button class="connect" id="btn" onclick="connectVPN()">CONNECT</button>
 
-        <div class="connect" id="connect" onclick="connectVPN()">
-            CONNECT
-        </div>
-
-        <div class="server">
-            <button onclick="setServer('EU 🇩🇪')">EU</button>
-            <button onclick="setServer('US 🇺🇸')">US</button>
-            <button onclick="setServer('RU 🇷🇺')">RU</button>
-        </div>
-
-        <div class="status" id="status">Status: DISCONNECTED</div>
-
-    </div>
+<div class="card">
+<button class="btn" onclick="copySub()">📋 Copy Subscription</button>
+<button class="btn" onclick="openSub()">➕ Add Subscription</button>
+</div>
 
 </div>
+
+<audio id="sound">
+<source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
+</audio>
 
 <script>
+let connected = false;
 
-let server = "EU 🇩🇪";
+const subURL = atob("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NlaXRjb21hZXYzNTktc3Vkb2wvTmV0MDkvQm96YTkvR2V0LnR4dC9UZXN0MDk=");
 
-// LOGIN
-function login(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("app").style.display="flex";
+function selectServer(name){
+  document.getElementById("selected").innerText = name;
 }
 
-// SERVER
-function setServer(s){
-    server = s;
-    alert("Server: " + s);
-}
-
-// CONNECT ANIMATION + SOUND
 function connectVPN(){
+  let btn = document.getElementById("btn");
+  let sound = document.getElementById("sound");
 
-    let btn = document.getElementById("connect");
-    let status = document.getElementById("status");
+  connected = !connected;
 
+  if(connected){
+    btn.innerText = "CONNECTED";
     btn.classList.add("active");
-    status.innerText = "CONNECTING...";
-
-    // sound (simple beep)
-    let audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
-    audio.play();
-
-    setTimeout(()=>{
-        status.innerText = "SECURE • " + server;
-    },2000);
+    sound.play();
+  } else {
+    btn.innerText = "CONNECT";
+    btn.classList.remove("active");
+  }
 }
 
+function copySub(){
+  navigator.clipboard.writeText(subURL);
+  alert("Copied!");
+}
+
+function openSub(){
+  window.open(subURL, "_blank");
+}
 </script>
 
 </body>
