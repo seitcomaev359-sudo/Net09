@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VPN Panel</title>
+<title>Riot VPN</title>
 
 <style>
 *{
@@ -18,22 +18,29 @@ background:#07111f;
 min-height:100vh;
 padding:20px;
 color:white;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 .logo{
-font-size:36px;
+font-size:38px;
 font-weight:700;
 color:#3dcfff;
 margin-bottom:20px;
 text-align:center;
+text-shadow:0 0 20px rgba(61,207,255,.5);
 }
 
 .card{
+width:100%;
+max-width:500px;
 background:rgba(17,24,39,.95);
 border:1px solid rgba(255,255,255,.05);
 border-radius:25px;
 padding:20px;
-box-shadow:0 0 30px rgba(0,255,255,.08);
+box-shadow:0 0 40px rgba(0,255,255,.08);
+backdrop-filter:blur(15px);
 }
 
 .user{
@@ -44,19 +51,20 @@ margin-bottom:20px;
 }
 
 .check{
-width:50px;
-height:50px;
+width:55px;
+height:55px;
 border-radius:50%;
 background:#0d3f37;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:24px;
+font-size:26px;
 color:#44ff99;
+box-shadow:0 0 20px rgba(68,255,153,.4);
 }
 
 .name{
-font-size:34px;
+font-size:30px;
 font-weight:700;
 }
 
@@ -104,77 +112,41 @@ margin-bottom:8px;
 }
 
 .value{
-font-size:28px;
+font-size:22px;
 font-weight:700;
+word-break:break-word;
 }
 
 .section{
 margin-top:25px;
 }
 
-.section h2{
-margin-bottom:15px;
-font-size:32px;
-}
-
-.buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-
-.btn{
-height:70px;
-border:none;
-border-radius:18px;
-background:#111827;
-color:white;
-font-size:24px;
-font-weight:700;
-cursor:pointer;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.btn.active{
-border:2px solid #00e5ff;
-box-shadow:0 0 25px rgba(0,229,255,.3);
-}
-
-.connect{
-width:100%;
-height:75px;
-margin-top:20px;
-border:none;
-border-radius:20px;
-font-size:24px;
-font-weight:700;
-background:linear-gradient(90deg,#00c6ff,#0072ff);
-color:white;
-cursor:pointer;
-}
-
-.status{
-text-align:center;
-margin-top:15px;
-font-size:18px;
-color:#44ff99;
-}
-
 .copy{
 width:100%;
-margin-top:15px;
-height:60px;
+height:65px;
 border:none;
 border-radius:18px;
-background:#00bcd4;
+background:linear-gradient(90deg,#00c6ff,#0072ff);
 color:white;
-font-size:18px;
+font-size:20px;
 font-weight:700;
 cursor:pointer;
+box-shadow:0 0 25px rgba(0,198,255,.35);
+transition:.3s;
+}
+
+.copy:hover{
+transform:translateY(-2px);
+}
+
+.copy:active{
+transform:scale(.98);
 }
 </style>
 </head>
 <body>
+
+<div>
 
 <div class="logo">Riot VPN</div>
 
@@ -183,7 +155,7 @@ cursor:pointer;
 <div class="user">
 <div class="check">✓</div>
 <div>
-<div class="name">КАЗБЕК</div>
+<div class="name">TG:SEIT099</div>
 <div class="exp">Истекает через 14 месяцев</div>
 </div>
 </div>
@@ -192,7 +164,7 @@ cursor:pointer;
 
 <div class="box blue">
 <div class="label">Имя пользователя</div>
-<div class="value">KAZBEK</div>
+<div class="value">TG:SEIT099</div>
 </div>
 
 <div class="box green">
@@ -214,26 +186,11 @@ cursor:pointer;
 
 <div class="section">
 
-<h2>Установка</h2>
-
-<div class="buttons">
-<button class="btn active">HAPP</button>
-<button class="btn">Shadowrocket</button>
-<button class="btn">v2RayTun</button>
-<button class="btn">iOS</button>
-</div>
-
-<button class="connect" onclick="connectVPN()">
-CONNECT
-</button>
-
-<div class="status" id="status">
-Не подключено
-</div>
-
 <button class="copy" onclick="copySub()">
-Копировать подписку
+📋 Копировать подписку
 </button>
+
+</div>
 
 </div>
 
@@ -247,19 +204,6 @@ const subscription =
 function copySub(){
 navigator.clipboard.writeText(subscription);
 alert("Подписка скопирована");
-}
-
-function connectVPN(){
-
-const status=document.getElementById("status");
-
-status.innerHTML="Подключение...";
-
-setTimeout(()=>{
-status.innerHTML="Подключено ✓";
-window.open(subscription,"_blank");
-},1500);
-
 }
 
 </script>
