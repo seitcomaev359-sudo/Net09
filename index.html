@@ -3,105 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VPN PRO+</title>
+<title>VPN Panel</title>
 
 <style>
-body{
-background:#050816;
-font-family:Arial,sans-serif;
-color:white;
+*{
 margin:0;
-padding:20px;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
-.container{
-max-width:420px;
-margin:auto;
+body{
+background:#07111f;
+min-height:100vh;
+padding:20px;
+color:white;
 }
 
 .logo{
+font-size:36px;
+font-weight:700;
+color:#3dcfff;
+margin-bottom:20px;
 text-align:center;
-font-size:40px;
-font-weight:bold;
-color:#00d4ff;
-margin:30px 0;
 }
 
 .card{
-background:#10182b;
-border-radius:20px;
+background:rgba(17,24,39,.95);
+border:1px solid rgba(255,255,255,.05);
+border-radius:25px;
 padding:20px;
-margin-bottom:15px;
+box-shadow:0 0 30px rgba(0,255,255,.08);
 }
 
-.title{
-color:#888;
+.user{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.check{
+width:50px;
+height:50px;
+border-radius:50%;
+background:#0d3f37;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+color:#44ff99;
+}
+
+.name{
+font-size:34px;
+font-weight:700;
+}
+
+.exp{
+opacity:.7;
+font-size:15px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.box{
+padding:16px;
+border-radius:18px;
+backdrop-filter:blur(15px);
+}
+
+.blue{
+border:1px solid #2979ff;
+background:rgba(41,121,255,.12);
+}
+
+.green{
+border:1px solid #00e676;
+background:rgba(0,230,118,.12);
+}
+
+.red{
+border:1px solid #ff5252;
+background:rgba(255,82,82,.12);
+}
+
+.orange{
+border:1px solid #ffc107;
+background:rgba(255,193,7,.12);
+}
+
+.label{
+opacity:.7;
 font-size:14px;
-margin-bottom:5px;
+margin-bottom:8px;
 }
 
 .value{
-font-size:24px;
-font-weight:bold;
+font-size:28px;
+font-weight:700;
+}
+
+.section{
+margin-top:25px;
+}
+
+.section h2{
+margin-bottom:15px;
+font-size:32px;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
 .btn{
-width:100%;
-padding:16px;
+height:70px;
 border:none;
-border-radius:15px;
-font-size:18px;
-margin-top:10px;
+border-radius:18px;
+background:#111827;
+color:white;
+font-size:24px;
+font-weight:700;
+cursor:pointer;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.btn.active{
+border:2px solid #00e5ff;
+box-shadow:0 0 25px rgba(0,229,255,.3);
+}
+
+.connect{
+width:100%;
+height:75px;
+margin-top:20px;
+border:none;
+border-radius:20px;
+font-size:24px;
+font-weight:700;
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+color:white;
 cursor:pointer;
 }
 
-.copy{
-background:#1d2a44;
-color:white;
+.status{
+text-align:center;
+margin-top:15px;
+font-size:18px;
+color:#44ff99;
 }
 
-.add{
-background:#00d4ff;
-color:black;
-font-weight:bold;
+.copy{
+width:100%;
+margin-top:15px;
+height:60px;
+border:none;
+border-radius:18px;
+background:#00bcd4;
+color:white;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-
-<div class="logo">
-VPN PRO+
-</div>
+<div class="logo">Riot VPN</div>
 
 <div class="card">
-<div class="title">Пользователь</div>
-<div class="value">TG:SEIT099</div>
+
+<div class="user">
+<div class="check">✓</div>
+<div>
+<div class="name">КАЗБЕК</div>
+<div class="exp">Истекает через 14 месяцев</div>
+</div>
 </div>
 
-<div class="card">
-<div class="title">Статус</div>
+<div class="grid">
+
+<div class="box blue">
+<div class="label">Имя пользователя</div>
+<div class="value">KAZBEK</div>
+</div>
+
+<div class="box green">
+<div class="label">Статус</div>
 <div class="value">Активна</div>
 </div>
 
-<div class="card">
-<div class="title">Истекает</div>
+<div class="box red">
+<div class="label">Истекает</div>
 <div class="value">07.09.2026</div>
 </div>
 
-<div class="card">
-<div class="title">Трафик</div>
+<div class="box orange">
+<div class="label">Трафик</div>
 <div class="value">∞ GB</div>
 </div>
 
-<button class="btn copy" onclick="copySub()">
-📋 Копировать подписку
+</div>
+
+<div class="section">
+
+<h2>Установка</h2>
+
+<div class="buttons">
+<button class="btn active">HAPP</button>
+<button class="btn">Shadowrocket</button>
+<button class="btn">v2RayTun</button>
+<button class="btn">iOS</button>
+</div>
+
+<button class="connect" onclick="connectVPN()">
+CONNECT
 </button>
 
-<button class="btn add" onclick="openSub()">
-➕ Добавить подписку
+<div class="status" id="status">
+Не подключено
+</div>
+
+<button class="copy" onclick="copySub()">
+Копировать подписку
 </button>
+
+</div>
 
 </div>
 
@@ -115,8 +249,17 @@ navigator.clipboard.writeText(subscription);
 alert("Подписка скопирована");
 }
 
-function openSub(){
-window.open(subscription);
+function connectVPN(){
+
+const status=document.getElementById("status");
+
+status.innerHTML="Подключение...";
+
+setTimeout(()=>{
+status.innerHTML="Подключено ✓";
+window.open(subscription,"_blank");
+},1500);
+
 }
 
 </script>
