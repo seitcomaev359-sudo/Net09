@@ -1,1 +1,121 @@
-html <!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Net09 VPN</title>  <style> *{ margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }  body{ background:#050816; background-image:radial-gradient(circle at top,#163260 0%,#050816 60%); color:white; padding:20px; }  .container{ max-width:520px; margin:auto; }  .logo{ text-align:center; font-size:36px; font-weight:800; margin-bottom:20px; color:#4ad7ff; text-shadow:0 0 20px rgba(74,215,255,.5); }  .card{ background:rgba(255,255,255,.05); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.08); border-radius:24px; padding:20px; margin-bottom:18px; }  .username{ font-size:26px; font-weight:700; margin-bottom:8px; }  .subtitle{ opacity:.7; margin-bottom:15px; }  .badge{ display:inline-block; padding:8px 16px; background:#00d084; border-radius:999px; font-weight:700; }  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }  .info{ padding:15px; border-radius:18px; background:#101b35; }  .info-title{ font-size:13px; opacity:.7; margin-bottom:8px; }  .info-value{ font-size:18px; font-weight:700; }  .blue{border:1px solid #2aa9ff;} .green{border:1px solid #00d084;} .red{border:1px solid #ff6b6b;} .orange{border:1px solid #ffb84d;}  .section-title{ font-size:24px; font-weight:700; margin-bottom:15px; }  .app{ padding:15px; border-radius:16px; background:#101b35; margin-bottom:10px; border:1px solid rgba(255,255,255,.08); }  .btn{ display:block; text-align:center; padding:16px; border-radius:16px; text-decoration:none; font-weight:700; margin-top:12px; }  .install{ background:#00d084; color:white; }  .store{ background:#229ED9; color:white; }  .footer{ text-align:center; margin-top:25px; opacity:.5; } </style> </head>  <body>  <div class="container">  <div class="logo"> Net09 VPN </div>  <div class="card">  <div class="username"> TG:SEIT099 </div>  <div class="subtitle"> VPN подписка активна </div>  <div class="badge"> НАВСЕГДА </div>  <div class="grid">  <div class="info blue"> <div class="info-title">Пользователь</div> <div class="info-value">TG:SEIT099</div> </div>  <div class="info green"> <div class="info-title">Статус</div> <div class="info-value">Активна</div> </div>  <div class="info red"> <div class="info-title">Срок</div> <div class="info-value">НАВСЕГДА</div> </div>  <div class="info orange"> <div class="info-title">Трафик</div> <div class="info-value">∞</div> </div>  </div>  </div>  <div class="card">  <div class="section-title"> Установка VPN </div>  <div class="app">📱 INCY</div> <div class="app">📱 Happ</div> <div class="app">📱 v2RayTun</div>  <a class="btn store" href="https://apps.apple.com/ru/app/incy/id6756943388" target="_blank"> Скачать INCY </a>  <a class="btn install" href="https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09"> 🚀 Добавить подписку </a>  <p style="opacity:.7;margin-top:12px;"> После нажатия подписка откроется в установленном VPN-клиенте. </p>  </div>  <div class="card">  <div class="section-title"> Поддержка </div>  <a class="btn store" href="https://t.me/SEIT099" target="_blank"> Telegram </a>  </div>  <div class="footer"> Net09 VPN © 2025 </div>  </div>  </body> </html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NET09 VPN PRO</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle at top, #0a0a0f, #000);
+    color: white;
+}
+
+.header {
+    text-align: center;
+    padding: 25px;
+}
+
+.title {
+    font-size: 26px;
+    color: #00f0ff;
+    text-shadow: 0 0 15px #00f0ff;
+}
+
+.card {
+    width: 90%;
+    max-width: 420px;
+    margin: 15px auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 25px rgba(0,240,255,0.15);
+}
+
+.button {
+    display:block;
+    margin-top:10px;
+    padding:12px;
+    border-radius:12px;
+    text-align:center;
+    background:#00f0ff;
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.button:hover {
+    background:#00bcd4;
+}
+
+.qr {
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">⚡ NET09 VPN PRO</div>
+</div>
+
+<div class="card">
+    <p>👤 TG:SEIT099</p>
+    <p>📌 Статус: АКТИВНА</p>
+    <p>⏳ Срок: НАВСЕГДА</p>
+    <p>📊 Трафик: ∞</p>
+</div>
+
+<div class="card">
+
+    <a class="button" href="https://apps.apple.com/ru/app/incy/id6756943388">
+        📲 Установить INCY
+    </a>
+
+    <a class="button" href="#" onclick="copySub()">
+        📋 Скопировать подписку
+    </a>
+
+    <a class="button" href="#" onclick="openVPN()">
+        🚀 Открыть в VPN
+    </a>
+
+    <div class="qr" id="qr"></div>
+
+</div>
+
+<script>
+const SUB = "https://raw.githubusercontent.com/seitcomaev359-sudo/Net09/Boza09/Get.txt/Test09";
+
+// копирование
+function copySub(){
+    navigator.clipboard.writeText(SUB);
+    alert("Подписка скопирована");
+}
+
+// попытка открыть VPN приложение
+function openVPN(){
+    window.location.href = "incy://import?url=" + encodeURIComponent(SUB);
+
+    setTimeout(()=>{
+        window.location.href = SUB;
+    }, 1200);
+}
+
+// QR код
+const qrImg = document.createElement("img");
+qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(SUB);
+document.getElementById("qr").appendChild(qrImg);
+</script>
+
+</body>
+</html>
