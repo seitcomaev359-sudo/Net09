@@ -41,10 +41,12 @@ vless://2c634977-584e-4e1f-b501-1b70c77a6743@185.141.227.180:2053?encryption=non
 vless://ebd1c0d6-7ff4-4b9f-8692-237517a27a64@195.133.73.65:443?type=tcp&security=reality&sni=anyfile2file.com&fp=chrome&flow=xtls-rprx-vision&pbk=mza5Hn1aolSz65qu-UwvBP3oesxMe25r11o4nxvikF0&sid=64c1fe36c7846400#t.me/freekesha21 - 42 🇷🇺
 hysteria2://3f63c86c-ac4a-4900-85cf-4fedf93c2ca5@91.240.86.70:24443?sni=hy.quattro-tech.ru#t.me/freekesha21 - 43 🇵🇹
 hysteria2://eBTe6Ax2pUts8oMEWoYVDfnSlHfkLffQ@nas.aizhzo.com:5010?insecure=1&obfs=salamander&obfs-password=7M4RXPFcQyQEGbkxBPfXo4bilMhCW2U9&sni=nas.aizhzo.com#t.me/freekesha21 - 44 🇭🇰
+Endpoint = 162.159.195.1:500
+
 [Interface]
 PrivateKey = 2KSXThkU9hOwdarixEdFqSDVoMRYFPRtsvJDhyUJSnc=
 Address = 172.16.0.2, 2606:4700:110:8203:3ba5:f2b6:e6c6:ea80
-DNS = 111.88.96.50, 111.88.96.51, 2a00:ab00:1233:26::50, 2a00:ab00:1233:26::51
+DNS = 111.88.96.50, 111. ВК 88.96.51, 2a00:ab00:1233:26::50, 2a00:ab00:1233:26::51
 MTU = 1280
 S1 = 0
 S2 = 0
@@ -62,4 +64,3 @@ I1 = <b 0xce000000010897a297ecc34cd6dd000044d0ec2e2e1ea2991f467ace4222129b5a0988
 [Peer]
 PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
 AllowedIPs = 0.0.0.0/0, ::/0
-Endpoint = 162.159.195.1:500
